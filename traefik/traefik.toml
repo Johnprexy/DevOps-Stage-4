@@ -1,0 +1,21 @@
+[entryPoints]
+  [entryPoints.web]
+    address = ":80"
+    [entryPoints.web.http.redirections.entryPoint]
+      to = "websecure"
+      scheme = "https"
+
+  [entryPoints.websecure]
+    address = ":443"
+
+[api]
+  dashboard = true
+
+[providers.docker]
+  watch = true
+  exposedByDefault = false
+
+[certificatesResolvers.myresolver.acme]
+  email = "akinolajohnayomide@gmail.com"
+  storage = "/certificates/acme.json"
+  [certificatesResolvers.myresolver.acme.tlsChallenge]
